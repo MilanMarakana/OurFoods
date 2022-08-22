@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Searchbar } from 'react-native-paper';
+import React, { useContext, useState } from 'react';
 import {
   FlatList,
   ActivityIndicator,
@@ -7,12 +6,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components/native';
+import { FavouritesBar } from '../../../../components/favourite/favourites-bar.component';
 
-import { RestaurantsInfoCard } from '../../components/restaurants-info-card/restaurant-info-card.components';
 import { Spacer } from '../../../../components/spacer/spacer.component';
 import { SafeArea } from '../../../../components/utility/safe-area.component';
+
 import { RestaurantsContext } from '../../../../services/restaurants/restaurants.context';
-import { Search } from '../../components/search.component';
+import { FavouritesContext } from '../../../../services/favourites/favourites.context';
+
+import { RestaurantsInfoCard } from '../../components/restaurants-info-card/restaurant-info-card.components';
+import { Search } from '../../components/restaurants-info-card/search.component';
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -31,7 +34,9 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 export const RestaurantsScreen = ({ navigation }) => {
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouritesContext);
+  const [isToggled, setIsToggled] = useState(false);
   return (
     <SafeArea>
       {isLoading && (
@@ -39,7 +44,16 @@ export const RestaurantsScreen = ({ navigation }) => {
           <Loading color="#2182BD" size="large" animating={true} />
         </LoadingContainer>
       )}
-      <Search />
+      <Search
+        isFavouritesToggled={isToggled}
+        onFavouritesToggle={() => setIsToggled(!isToggled)}
+      />
+      {isToggled && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {

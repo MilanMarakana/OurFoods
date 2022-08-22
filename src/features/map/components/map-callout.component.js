@@ -10,5 +10,5 @@ export const Icon = styled.Image`
 `;
 
 export const MapCallout = ({ restaurant }) => (
-  <CompactRestaurantInfo restaurant={restaurant} />
+  <CompactRestaurantInfo isMap restaurant={restaurant} />
 );

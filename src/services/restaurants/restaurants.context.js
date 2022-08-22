@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { LocationContext } from './location/location.context';
+import { LocationContext } from '../location/location.context';
 import {
   restaurantsRequest,
   restaurantsTransform,

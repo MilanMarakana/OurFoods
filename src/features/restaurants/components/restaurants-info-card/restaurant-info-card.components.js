@@ -16,8 +16,9 @@ import {
   Icon,
   Address,
 } from './restaurant-info-card.styles';
+import { Favourite } from '../../../../components/favourite/favourites.component';
 
-export const RestaurantsInfoCard = ({ restaurant = {} }) => {
+export const RestaurantsInfoCard = ({ restaurant = [] }) => {
   const {
     name = 'Some Restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
@@ -35,6 +36,7 @@ export const RestaurantsInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
