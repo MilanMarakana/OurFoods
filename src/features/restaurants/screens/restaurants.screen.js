@@ -1,27 +1,20 @@
 import React, { useContext, useState } from 'react';
-import {
-  FlatList,
-  ActivityIndicator,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { FavouritesBar } from '../../../../components/favourite/favourites-bar.component';
+import { FavouritesBar } from '../../../components/favourite/favourites-bar.component';
 
-import { Spacer } from '../../../../components/spacer/spacer.component';
-import { SafeArea } from '../../../../components/utility/safe-area.component';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { SafeArea } from '../../../components/utility/safe-area.component';
 
-import { RestaurantsContext } from '../../../../services/restaurants/restaurants.context';
-import { FavouritesContext } from '../../../../services/favourites/favourites.context';
+import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
+import { FavouritesContext } from '../../../services/favourites/favourites.context';
 
-import { RestaurantsInfoCard } from '../../components/restaurants-info-card/restaurant-info-card.components';
-import { Search } from '../../components/restaurants-info-card/search.component';
+import { RestaurantsInfoCard } from '../components/restaurant-info-card.components';
+import { Search } from '../components/search.component';
+import { RestaurantList } from '../components/restaurant-list.styles';
 
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
+import { FadeInView } from '../../../components/animations/fade.animation';
 
 const LoadingContainer = styled.View`
   position: absolute;
@@ -66,7 +59,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantsInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantsInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );

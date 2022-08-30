@@ -1,11 +1,11 @@
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
 
-import star from '../../../../../assets/star';
-import open from '../../../../../assets/open';
+import star from '../../../../assets/star';
+import open from '../../../../assets/open';
 
-import { Spacer } from '../../../../components/spacer/spacer.component';
-import { Text } from '../../../../components/typography/text.component';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
 import {
   RestaurantCard,
   RestaurantCardCover,
@@ -16,7 +16,7 @@ import {
   Icon,
   Address,
 } from './restaurant-info-card.styles';
-import { Favourite } from '../../../../components/favourite/favourites.component';
+import { Favourite } from '../../../components/favourite/favourites.component';
 
 export const RestaurantsInfoCard = ({ restaurant = [] }) => {
   const {
